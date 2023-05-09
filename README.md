@@ -33,7 +33,7 @@ On reprend l'exercice 2 du premier TP qui change la couleur d'un panneau et affi
 
 2. Ajoutez à la classe un attribut `nbFois` de classe `IntegerProperty` et instanciez-le dans un constructeur en utilisant la classe concrète `SimpleIntegerProperty`. Cette **propriété** devra changer dynamiquement en fonction du bouton cliqué et du nombre de clics. Changez le code de vos gestionnaires d'événement de façon à utiliser la propriété `nbFois` lors de l'affectation du texte du label `texteDuHaut`.
 
-3. Ajoutez maintenant un attribut `message` de classe `StringProperty`, instanciez-le dans le constructeur en utilisant `SimpleStringProperty`. Dans les gestionnaires d'événement, ce message sera affecté au texte du `Button`.
+3. Ajoutez maintenant un attribut `message` de classe `StringProperty`, instanciez-le dans le constructeur en utilisant `SimpleStringProperty`. Dans les gestionnaires d'événement, on affectera le texte du `Button` au message.
 
 4. Transformez l'affectation du texte du label `texteDuHaut` en un **binding** sur la propriété `Text` du label et déplacez ce nouveau code à l'extérieur du gestionnaire d'événement. Vous utiliserez la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). Pour l'instant, ne vous préoccupez pas de l'état initial du `Label`.
 
@@ -53,7 +53,7 @@ On continue de travailler sur la palette, mais à partir d'un code initial un pe
 
 2. Ajoutez, dans le gestionnaire d'événement de la classe `Palette`, le code qui incrémente le nombre de clics du bouton qui a reçu l'événement.
 
-3. Définissez un attribut `nbClicsListener` de type [`ChangeListener<Number>`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/value/ChangeListener.html) et implémentez-le dans la méthode `start()` (de la classe `Palette`) de façon à actualiser le label `texteDuHaut` et le style du panneau. Pour vous guider, remarquez que l'interface `ChangeListener<T>` est une interface fonctionnelle de JavaFX, sa seule fonction abstraite étant `changed(ObservableValue<? extends T> obsevée, T ancienneValeur, T nouvelleValeur)`. Le paramètre `observée` correspond à la source à laquelle l'écouteur sera associée, les deux autres paramètres étant la valeur actuelle de la source et la nouvelle valeur à utiliser.
+3. Définissez un attribut `nbClicsListener` de type [`ChangeListener<Number>`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/value/ChangeListener.html) et implémentez-le dans la méthode `start()` (de la classe `Palette`) de façon à actualiser le label `texteDuHaut` et le style du panneau. Pour vous guider, remarquez que l'interface `ChangeListener<T>` est une interface fonctionnelle de JavaFX, sa seule fonction abstraite étant `changed(ObservableValue<? extends T> observée, T ancienneValeur, T nouvelleValeur)`. Le paramètre `observée` correspond à la source à laquelle l'écouteur sera associée, les deux autres paramètres étant la valeur actuelle de la source et la nouvelle valeur à utiliser.
 
    Associez cet écouteur de changement à la propriété `nbClics` de chacun des 3 boutons.
 
@@ -92,27 +92,27 @@ Voici un exemple de création de binding bas niveau pour le calcul de l'aire d'u
 
 ```java
     DoubleProperty hauteur = new SimpleDoubleProperty(7.0);
-    DoubleProperty largeur = new SimpleDoubleProperty(5.0);
-    
-    DoubleProperty aire = new SimpleDoubleProperty(); // valeur qui sera calculée à la volée
-    
-    DoubleBinding aireBinding = new DoubleBinding() {
+        DoubleProperty largeur = new SimpleDoubleProperty(5.0);
+
+        DoubleProperty aire = new SimpleDoubleProperty(); // valeur qui sera calculée à la volée
+
+        DoubleBinding aireBinding = new DoubleBinding() {
         // constructeur de la classe interne anonyme
         {
-           this.bind(hauteur, largeur); // appel du constructeur de la classe mère (DoubleBinding)
+        this.bind(hauteur, largeur); // appel de la méthode bind(...) de la classe mère (DoubleBinding)
         }
 
-        @Override
-        protected double computeValue() {
-            return hauteur.get() * largeur.get();
+@Override
+protected double computeValue() {
+        return hauteur.get() * largeur.get();
         }
-    };
-    aire.bind(aireBinding); // Liaison de la propriété aire au binding
-    //  tous les changements de la hauteur et de la largeur vont être pris en compte :
-        
-    System.out.println(aire.get()); // affiche 35
-    largeur.setValue(10);
-    System.out.println(aire.get()); // affiche 70
+        };
+        aire.bind(aireBinding); // Liaison de la propriété aire au binding
+        //  tous les changements de la hauteur et de la largeur vont être pris en compte :
+
+        System.out.println(aire.get()); // affiche 35
+        largeur.setValue(10);
+        System.out.println(aire.get()); // affiche 70
 ```
 
 
