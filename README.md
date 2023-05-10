@@ -92,27 +92,27 @@ Voici un exemple de création de binding bas niveau pour le calcul de l'aire d'u
 
 ```java
     DoubleProperty hauteur = new SimpleDoubleProperty(7.0);
-        DoubleProperty largeur = new SimpleDoubleProperty(5.0);
+    DoubleProperty largeur = new SimpleDoubleProperty(5.0);
 
-        DoubleProperty aire = new SimpleDoubleProperty(); // valeur qui sera calculée à la volée
+    DoubleProperty aire = new SimpleDoubleProperty(); // valeur qui sera calculée à la volée
 
-        DoubleBinding aireBinding = new DoubleBinding() {
+    DoubleBinding aireBinding = new DoubleBinding() {
         // constructeur de la classe interne anonyme
         {
         this.bind(hauteur, largeur); // appel de la méthode bind(...) de la classe mère (DoubleBinding)
         }
 
-@Override
-protected double computeValue() {
-        return hauteur.get() * largeur.get();
+        @Override
+        protected double computeValue() {
+            return hauteur.get() * largeur.get();
         }
-        };
-        aire.bind(aireBinding); // Liaison de la propriété aire au binding
-        //  tous les changements de la hauteur et de la largeur vont être pris en compte :
+    };
+    aire.bind(aireBinding); // Liaison de la propriété aire au binding
+    //  tous les changements de la hauteur et de la largeur vont être pris en compte :
 
-        System.out.println(aire.get()); // affiche 35
-        largeur.setValue(10);
-        System.out.println(aire.get()); // affiche 70
+    System.out.println(aire.get()); // affiche 35
+    largeur.setValue(10);
+    System.out.println(aire.get()); // affiche 70
 ```
 
 
