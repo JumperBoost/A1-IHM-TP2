@@ -9,14 +9,14 @@
       [Cyrille Nadal](mailto:cyrille.nadal@umontpellier.fr),
       [Nathalie Palleja](mailto:nathalie.palleja@umontpellier.fr),
       [Xavier Palleja](mailto:xavier.palleja@umontpellier.fr),
+      [Zouhaira Ayadi](mailto:zouhaira.ayadi@umontpellier.fr),
       [Petru Valicov](mailto:petru.valicov@umontpellier.fr)
-* Le [forum Piazza](https://piazza.com/class/lfmbartihpv60i) de ce cours pour poser vos questions
+* Le [forum Piazza](https://piazza.com/class/lusd3gv57i85y1/) de ce cours pour poser vos questions
 * [Email](mailto:petru.valicov@umontpellier.fr) pour une question d'ordre privée concernant le cours.
-
 
 ## TP 2 : gestionnaires d'événement et propriétés
 
-Tout au long du TP, vous aurez certainement besoin de **consulter les pages de documentation** de JavaFX, qui sont [disponibles ici](https://openjfx.io/javadoc/18/).
+Tout au long du TP, vous aurez certainement besoin de **consulter les pages de documentation** de JavaFX, qui sont [disponibles ici](https://openjfx.io/javadoc/20/).
 
 
 Le but de ce TP est de vous familiariser avec la notion de [**Propriété**](https://wiki.openjdk.java.net/display/OpenJFX/JavaFX+Property+Architecture) en JavaFX. Pour un objet donné, les propriétés définissent son état accessible en lecture/écriture, et qui de plus, peut être _observé_ lors de son changement.
@@ -35,7 +35,7 @@ On reprend l'exercice 2 du premier TP qui change la couleur d'un panneau et affi
 
 3. Ajoutez maintenant un attribut `message` de classe `StringProperty`, instanciez-le dans le constructeur en utilisant `SimpleStringProperty`. Dans les gestionnaires d'événement, on affectera le texte du `Button` au message.
 
-4. Transformez l'affectation du texte du label `texteDuHaut` en un **binding** sur la propriété `Text` du label et déplacez ce nouveau code à l'extérieur du gestionnaire d'événement. Vous utiliserez la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). Pour l'instant, ne vous préoccupez pas de l'état initial du `Label`.
+4. Transformez l'affectation du texte du label `texteDuHaut` en un **binding** sur la propriété `Text` du label et déplacez ce nouveau code à l'extérieur du gestionnaire d'événement. Vous utiliserez la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). Pour l'instant, ne vous préoccupez pas de l'état initial du `Label`.
 
 5. De même, déclarez un attribut `couleurPanneau` de classe `StringProperty`. Vous l'instancierez comme ceci : `couleurPanneau = new SimpleStringProperty("#000000");`.
    Mettez à jour l'objet `couleurPanneau` dans le gestionnaire d'événement en utilisant (uniquement) la valeur de la couleur correspondante au bouton choisi, et enfin, ajoutez un binding sur la propriété `Style` du panneau.
@@ -53,7 +53,7 @@ On continue de travailler sur la palette, mais à partir d'un code initial un pe
 
 2. Ajoutez, dans le gestionnaire d'événement de la classe `Palette`, le code qui incrémente le nombre de clics du bouton qui a reçu l'événement.
 
-3. Définissez un attribut `nbClicsListener` de type [`ChangeListener<Number>`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/value/ChangeListener.html) et implémentez-le dans la méthode `start()` (de la classe `Palette`) de façon à actualiser le label `texteDuHaut` et le style du panneau. Pour vous guider, remarquez que l'interface `ChangeListener<T>` est une interface fonctionnelle de JavaFX, sa seule fonction abstraite étant `changed(ObservableValue<? extends T> observée, T ancienneValeur, T nouvelleValeur)`. Le paramètre `observée` correspond à la source à laquelle l'écouteur sera associée, les deux autres paramètres étant la valeur actuelle de la source et la nouvelle valeur à utiliser.
+3. Définissez un attribut `nbClicsListener` de type [`ChangeListener<Number>`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/value/ChangeListener.html) et implémentez-le dans la méthode `start()` (de la classe `Palette`) de façon à actualiser le label `texteDuHaut` et le style du panneau. Pour vous guider, remarquez que l'interface `ChangeListener<T>` est une interface fonctionnelle de JavaFX, sa seule fonction abstraite étant `changed(ObservableValue<? extends T> observée, T ancienneValeur, T nouvelleValeur)`. Le paramètre `observée` correspond à la source à laquelle l'écouteur sera associée, les deux autres paramètres étant la valeur actuelle de la source et la nouvelle valeur à utiliser.
 
    Associez cet écouteur de changement à la propriété `nbClics` de chacun des 3 boutons.
 
@@ -65,9 +65,9 @@ Dans le fichier `MainPersonnes.java`, on va travailler avec une liste de personn
 
 1. Dans cette question, vous allez compléter la fonction principale `main(String args[])` de la classe `MainPersonnes`, de façon à définir un écouteur de changement sur la liste `lesPersonnes` (variable `unChangementListener`).
 
-   [ListChangeListener](https://openjfx.io/javadoc/18/javafx.base/javafx/collections/ListChangeListener) est une interface fonctionnelle dont la méthode à implémenter n'a qu'un argument. Cet argument, de type [ListChangeListener.Change](https://openjfx.io/javadoc/18/javafx.base/javafx/collections/ListChangeListener.Change.html), permet d'accéder aux informations des éléments qui ont changé dans la liste. Pour pouvoir exploiter un changement, il faut (au moins une fois) exécuter la méthode `next()` sur cet argument, et ensuite, suivant le type de changement, appliquer les changements voulus (le code dé réaction).
+   [ListChangeListener](https://openjfx.io/javadoc/20/javafx.base/javafx/collections/ListChangeListener) est une interface fonctionnelle dont la méthode à implémenter n'a qu'un argument. Cet argument, de type [ListChangeListener.Change](https://openjfx.io/javadoc/20/javafx.base/javafx/collections/ListChangeListener.Change.html), permet d'accéder aux informations des éléments qui ont changé dans la liste. Pour pouvoir exploiter un changement, il faut (au moins une fois) exécuter la méthode `next()` sur cet argument, et ensuite, suivant le type de changement, appliquer les changements voulus (le code dé réaction).
 
-   Pour savoir quel type de changement a eu lieu, vous pouvez utiliser des méthodes booléennes comme `wasAdded()`, `wasRemoved()`, `wasUpdated()` etc. On peut aussi utiliser la méthode `getAddedSubList()` qui retourne la liste de tous les éléments ajoutés. Pensez à lire la documentation de [ListChangeListener.Change](https://openjfx.io/javadoc/18/javafx.base/javafx/collections/ListChangeListener.Change.html) avant de poursuivre.
+   Pour savoir quel type de changement a eu lieu, vous pouvez utiliser des méthodes booléennes comme `wasAdded()`, `wasRemoved()`, `wasUpdated()` etc. On peut aussi utiliser la méthode `getAddedSubList()` qui retourne la liste de tous les éléments ajoutés. Pensez à lire la documentation de [ListChangeListener.Change](https://openjfx.io/javadoc/20/javafx.base/javafx/collections/ListChangeListener.Change.html) avant de poursuivre.
 
    Pour l'instant, votre code ne traitera qu'un seul ajout à la fois, et se contentera d'afficher "_Pierre a été ajouté_" (quand la personne dont le nom est "_Pierre_" a été ajoutée...). Invoquez la méthode `question1()` pour voir le résultat.
 
@@ -142,4 +142,4 @@ Pour plus d'information sur la relation entre les deux unités de mesure de temp
 
 1. Faites en sorte que toute variation d'un des 2 curseurs provoque automatiquement le changement correspondant dans le second.
 
-2. Ajoutez maintenant les températures exprimées sous forme de texte dans les`TextField` et faites en sorte qu'elles soient liées (avec des bindings) de manière bidirectionnelle avec les sliders correspondants. Vous aurez besoin d'utiliser la méthode statique [`bindBidirectional`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/binding/Bindings.html#bindBidirectional(javafx.beans.property.Property,javafx.beans.property.Property,javafx.util.StringConverter)) de la classe utilitaire [`Bindings`](https://openjfx.io/javadoc/18/javafx.base/javafx/beans/binding/Bindings.html).<br/>
+2. Ajoutez maintenant les températures exprimées sous forme de texte dans les`TextField` et faites en sorte qu'elles soient liées (avec des bindings) de manière bidirectionnelle avec les sliders correspondants. Vous aurez besoin d'utiliser la méthode statique [`bindBidirectional`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html#bindBidirectional(javafx.beans.property.Property,javafx.beans.property.Property,javafx.util.StringConverter)) de la classe utilitaire [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html).<br/>
