@@ -39,7 +39,7 @@ On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affi
 - message
 - " cliqué "
 - nbFois
-- "fois."
+- " fois."
  Vous placerez ce code à l'extérieur des gestionnaires d'événement (1 binding à la place de 3 affectations).
 
     Pour ce faire, vous utiliserez la méthode `bind()` sur la textProperty, la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et enfin la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). 
