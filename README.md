@@ -35,7 +35,17 @@ On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affi
 
 3. Ajoutez maintenant un attribut `message` de classe `StringProperty`, instanciez-le dans le constructeur en utilisant `SimpleStringProperty`. Dans les gestionnaires d'événement, on affectera le texte du `Button` au message.
 
-4. Transformez l'affectation du texte du label `texteDuHaut` en un **binding** sur la propriété `Text` du label et déplacez ce nouveau code à l'extérieur du gestionnaire d'événement. Vous utiliserez la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). Pour l'instant, ne vous préoccupez pas de l'état initial du `Label`.
+4. Remplacez les trois affectations de texte du label `texteDuHaut` par un **binding** entre la propriété `Text` du label (méthode textProperty()) et les 4 informations :
+- message
+- " cliqué "
+- nbFois
+- "fois."
+ Vous placerez ce code à l'extérieur des gestionnaires d'événement (1 binding à la place de 3 affectations).
+
+    Pour ce faire, vous utiliserez la méthode **bind** sur la textProperty, la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et enfin la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique). 
+    Enfin, ne vous préoccupez pas de l'état initial du `Label`.
+    
+    Maintenant, la modification de la valeur de message ou de nbFois mettra à jour texteDuHaut.
 
 5. De même, déclarez un attribut `couleurPanneau` de classe `StringProperty`. Vous l'instancierez comme ceci : `couleurPanneau = new SimpleStringProperty("#000000");`.
    Mettez à jour l'objet `couleurPanneau` dans le gestionnaire d'événement en utilisant (uniquement) la valeur de la couleur correspondante au bouton choisi, et enfin, ajoutez un binding sur la propriété `Style` du panneau.
