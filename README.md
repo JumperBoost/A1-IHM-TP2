@@ -25,7 +25,7 @@ La notion sœur de propriété et la notion de **binding**. Il s'agit d'une vale
 
 ### Exercice 1 - Premières propriétés et bindings simples
 
-On reprend l'exercice 2 du premier TP qui change la couleur d'un panneau et affiche combien de fois un bouton a été cliqué. Mais cette fois-ci nous allons complexifier un peu le comportement des éléments de la fenêtre. Désormais il faudrait que les clics changent également le texte et la couleur d'un label situé tout en bas de la fenêtre.
+On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affiche combien de fois un bouton a été cliqué. Mais cette fois-ci nous allons complexifier un peu le comportement des éléments de la fenêtre. Désormais il faudrait que les clics changent également le texte et la couleur d'un label situé tout en bas de la fenêtre.
 
 ![](images/Exo1-a.png) ![](images/Exo1-b.png) ![](images/Exo1-c.png)
 
