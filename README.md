@@ -40,7 +40,7 @@ On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affi
 	- Vous placerez ce code à l'extérieur des gestionnaires d'événement (1 binding à la place de 3 affectations).
 	- Enfin, ne vous préoccupez pas de l'état initial du `Label`.
 
-	Remarquez que maintenant la modification de la valeur de message ou de nbFois mettra à jour texteDuHaut.
+	Remarquez maintenant que la modification de la valeur des propertys **message** ou **nbFois** met à jour le texte de **texteDuHaut**.
 
 5. De même, déclarez un attribut `couleurPanneau` de classe `StringProperty`. Vous l'instancierez comme ceci : `couleurPanneau = new SimpleStringProperty("#000000");`.
    Mettez à jour l'objet `couleurPanneau` dans le gestionnaire d'événement en utilisant (uniquement) la valeur de la couleur correspondante au bouton choisi, et enfin, ajoutez un binding sur la propriété `Style` du panneau.
