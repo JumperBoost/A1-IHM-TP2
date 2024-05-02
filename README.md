@@ -25,7 +25,7 @@ La notion sœur de propriété et la notion de **binding**. Il s'agit d'une vale
 
 ### Exercice 1 - Premières propriétés et bindings simples
 
-On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affiche combien de fois un bouton a été cliqué. Mais cette fois-ci nous allons complexifier un peu le comportement des éléments de la fenêtre. Désormais il faudrait que les clics changent également le texte et la couleur d'un label situé tout en bas de la fenêtre.
+On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affiche combien de fois un bouton a été cliqué. Mais cette fois-ci, nous allons complexifier un peu le comportement des éléments de la fenêtre. Désormais, il faudrait que les clics changent également le texte et la couleur d'un label situé tout en bas de la fenêtre.
 
 ![](images/Exo1-a.png) ![](images/Exo1-b.png) ![](images/Exo1-c.png)
 
@@ -35,12 +35,12 @@ On reprend l'exercice 4 du premier TP qui change la couleur d'un panneau et affi
 
 3. Ajoutez maintenant un attribut `message` de classe `StringProperty`, instanciez-le dans le constructeur en utilisant `SimpleStringProperty`. Dans les gestionnaires d'événement, on affectera le texte du `Button` au message.
 
-4. Remplacez les trois affectations de texte du label `texteDuHaut` par un **binding** entre la propriété `text` du label (méthode `textProperty()`) et les 4 informations,  **message**, " cliqué ", **nbFois**, " fois."
+4. Remplacez les trois affectations de texte du label `texteDuHaut` par un **binding** entre la propriété `text` du label (méthode `textProperty()`) et les 4 informations, **message**, " cliqué ", **nbFois**, " fois."
 	- Pour ce faire, vous utiliserez la méthode `bind()` sur la textProperty, la méthode statique `concat(...)` de la classe [`Bindings`](https://openjfx.io/javadoc/20/javafx.base/javafx/beans/binding/Bindings.html) (pour concaténer un nombre variable de chaînes de caractères), et enfin la méthode `asString()` (pour lier avec une `String` correspondant à une expression numérique).
 	- Vous placerez ce code à l'extérieur des gestionnaires d'événement (1 binding à la place de 3 affectations).
 	- Enfin, ne vous préoccupez pas de l'état initial du `Label`.
 
-	Remarquez maintenant que la modification de la valeur des propertys **message** ou **nbFois** met à jour le texte de **texteDuHaut**.
+	Remarquez maintenant que la modification de la valeur des propriétés **message** ou **nbFois** met à jour le texte de **texteDuHaut**.
 
 5. De même, déclarez un attribut `couleurPanneau` de classe `StringProperty`. Vous l'instancierez comme ceci : `couleurPanneau = new SimpleStringProperty("#000000");`.
    Mettez à jour l'objet `couleurPanneau` dans le gestionnaire d'événement en utilisant (uniquement) la valeur de la couleur correspondante au bouton choisi, et enfin, ajoutez un binding sur la propriété `Style` du panneau.
