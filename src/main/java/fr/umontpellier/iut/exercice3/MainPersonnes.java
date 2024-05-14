@@ -10,32 +10,29 @@ public class MainPersonnes  {
 
     private static ObservableList<Personne> lesPersonnes;
 
-    private static ListChangeListener<Personne> unChangementListener;
+    private static ListChangeListener<Personne> plusieursChangementsListener;
 
     public static void main(String[] args) {
         lesPersonnes = FXCollections.observableArrayList(personne -> new Observable[] {personne.ageProperty()});
 
-        unChangementListener = new ListChangeListener<Personne>() {
-            @Override
-            public void onChanged(Change<? extends Personne> change) {
-                while(change.next()) {
-                    if(change.wasAdded()) {
-                        for(Personne p : change.getAddedSubList())
-                            System.out.println(p.getNom() + " a été ajouté");
-                    } else if(change.wasRemoved()) {
-                        for(Personne p : change.getRemoved())
-                            System.out.println(p.getNom() + " a été enlevé");
-                    } else if(change.wasUpdated()) {
-                        for(int i = change.getFrom(); i < change.getTo(); i++) {
-                            Personne p = change.getList().get(i);
-                            System.out.println(p.getNom() + " a maintenant " + p.getAge() + " ans");
-                        }
+        plusieursChangementsListener = change -> {
+            while (change.next()) {
+                if (change.wasAdded()) {
+                    for (Personne p : change.getAddedSubList())
+                        System.out.println(p.getNom() + " a été ajouté");
+                } else if (change.wasRemoved()) {
+                    for (Personne p : change.getRemoved())
+                        System.out.println(p.getNom() + " a été enlevé");
+                } else if (change.wasUpdated()) {
+                    for (int i = change.getFrom(); i < change.getTo(); i++) {
+                        Personne p = change.getList().get(i);
+                        System.out.println(p.getNom() + " a maintenant " + p.getAge() + " ans");
                     }
                 }
             }
         };
-        lesPersonnes.addListener(unChangementListener);
-        question3();
+        lesPersonnes.addListener(plusieursChangementsListener);
+        question5();
     }
 
     public static void question1() {

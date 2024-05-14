@@ -7,9 +7,9 @@ import javafx.beans.property.StringProperty;
 
 public class Personne {
 
-    private String nom;
-    private IntegerProperty age;
-    private StringProperty villeDeNaissance;
+    private final String nom;
+    private final IntegerProperty age;
+    private final StringProperty villeDeNaissance;
 
     public Personne(String nom, int age) {
         this.nom = nom;
