@@ -21,12 +21,15 @@ public class MainPersonnes  {
                     if(change.wasAdded()) {
                         for(Personne p : change.getAddedSubList())
                             System.out.println(p.getNom() + " a été ajouté");
+                    } else if(change.wasRemoved()) {
+                        for(Personne p : change.getRemoved())
+                            System.out.println(p.getNom() + " a été enlevé");
                     }
                 }
             }
         };
         lesPersonnes.addListener(unChangementListener);
-        question1();
+        question2();
     }
 
     public static void question1() {
