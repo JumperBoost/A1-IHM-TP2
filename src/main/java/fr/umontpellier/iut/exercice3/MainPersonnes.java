@@ -1,6 +1,5 @@
 package fr.umontpellier.iut.exercice3;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -13,12 +12,21 @@ public class MainPersonnes  {
     private static ListChangeListener<Personne> unChangementListener;
 
     public static void main(String[] args) {
-
         lesPersonnes = FXCollections.observableArrayList();
 
-//        unChangementListener = à completer
-
+        unChangementListener = new ListChangeListener<Personne>() {
+            @Override
+            public void onChanged(Change<? extends Personne> change) {
+                while(change.next()) {
+                    if(change.wasAdded()) {
+                        for(Personne p : change.getAddedSubList())
+                            System.out.println(p.getNom() + " a été ajouté");
+                    }
+                }
+            }
+        };
         lesPersonnes.addListener(unChangementListener);
+        question1();
     }
 
     public static void question1() {
