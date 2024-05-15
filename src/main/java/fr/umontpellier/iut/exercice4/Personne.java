@@ -7,9 +7,9 @@ import javafx.beans.property.StringProperty;
 
 public class Personne {
 
-    private String nom;
-    private IntegerProperty age;
-    private StringProperty villeDeNaissance;
+    private final String nom;
+    private final IntegerProperty age;
+    private final StringProperty villeDeNaissance;
 
     public Personne(String nom, int age) {
         this.nom = nom;
@@ -17,11 +17,27 @@ public class Personne {
         this.villeDeNaissance = new SimpleStringProperty("Paris");
     }
 
-    public void setAge(int age) {
-        this.age.setValue(age);
+    public int getAge() {
+        return age.get();
     }
 
-    public void setVilleDeNaissance(String ville) {
-        villeDeNaissance.setValue(ville);
+    public IntegerProperty ageProperty() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age.set(age);
+    }
+
+    public String getVilleDeNaissance() {
+        return villeDeNaissance.get();
+    }
+
+    public StringProperty villeDeNaissanceProperty() {
+        return villeDeNaissance;
+    }
+
+    public void setVilleDeNaissance(String villeDeNaissance) {
+        this.villeDeNaissance.set(villeDeNaissance);
     }
 }
