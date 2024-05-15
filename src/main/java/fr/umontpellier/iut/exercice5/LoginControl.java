@@ -1,9 +1,11 @@
 package fr.umontpellier.iut.exercice5;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -14,6 +16,12 @@ public class LoginControl extends GridPane {
 
     @FXML
     private PasswordField pwd;
+
+    @FXML
+    private Button okBtn;
+
+    @FXML
+    private Button cancelBtn;
 
     private StringProperty userIdProperty;
     private StringProperty pwdProperty;
@@ -29,6 +37,28 @@ public class LoginControl extends GridPane {
         userId.textProperty().bindBidirectional(userIdProperty);
         pwd.textProperty().bindBidirectional(pwdProperty);
         pwd.editableProperty().bind(Bindings.greaterThanOrEqual(userIdProperty.length(), 6));
+
+        // Bindings bas niveau
+        okBtn.disableProperty().bind(new BooleanBinding() {
+            {
+                super.bind(pwdProperty);
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return !checkIfPwdIsValid();
+            }
+        });
+        cancelBtn.disableProperty().bind(new BooleanBinding() {
+            {
+                super.bind(userIdProperty, pwdProperty);
+            }
+
+            @Override
+            protected boolean computeValue() {
+                return userIdProperty.get().isEmpty() && pwdProperty.get().isEmpty();
+            }
+        });
     }
 
     private boolean checkIfPwdIsValid() {
@@ -48,9 +78,6 @@ public class LoginControl extends GridPane {
 
     @FXML
     private void okClicked() {
-        if(!checkIfPwdIsValid())
-            return;
-
         System.out.print(userIdProperty.get() + " ");
         for (char c : pwdProperty.get().toCharArray())
             System.out.print("*");
@@ -60,9 +87,6 @@ public class LoginControl extends GridPane {
 
     @FXML
     private void cancelClicked() {
-        if(userIdProperty.get().isEmpty() && pwdProperty.get().isEmpty())
-            return;
-
         userIdProperty.set("");
         pwdProperty.set("");
     }
